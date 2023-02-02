@@ -1,34 +1,32 @@
-# System Crafters Guix Installer
+# Guix Installer
 
-This repository runs _automated CI builds_ to produce a
-[GNU Guix](https://guix.gnu.org) installation image using the
-**full Linux kernel** from the
-[Nonguix channel](https://gitlab.com/nonguix/nonguix). If you are using a
-modern laptop or hardware that is incompatible with the **Linux Libre kernel**,
-this installer image is for you!
+This repository is meant to be used to create an installer image based on the **full Linux kernel**
+from the [Nonguix channel](https://gitlab.com/nonguix/nonguix).  This allows for the use of non-libre
+drivers to support available hardware that uses inexpensive, proprietary components with non-open-source
+drivers.
 
-You may take a look at the [image configuration](./guix/installer.scm) and the
-[build workflow](./.github/workflows/build.yaml) to be sure that we aren't adding
-anything malicious to these builds!
+Please check out the [image configuration files](./guix-config/) and the [ISO creation script](./build-iso.sh)
+to understand what is included and how the image is build.
 
-**A new `.iso` image is produced at least once a week, sometimes more often if
-we're making improvements to the configuration.**
+Although I'm starting from scratch, I followed the trail blazed in the [SystemsCrafters/guix-installer](https://github.com/SystemCrafters/guix-installer) repo.  Much appreciation to [David Wilson](https://github.com/daviwil) and the rest of the [System Crafters team](https://github.com/SystemCrafters).
 
 ## Table of Contents
-- [System Crafters Guix Installer](#system-crafters-guix-installer)
-  - [Instructions](#instructions)
+- [Guix Installer](#guix-installer)
+  - [Build Instructions](#build-instructions)
   - [Attributions](#attributions)
   - [License](#license)
 
-## Instructions
+## Build Instructions
 
-1. Download a recently built `.iso` from this repo's
-   [release page](https://github.com/SystemCrafters/guix-installer/releases)
-2. Flash the `.iso` file into a USB stick with at least `3Gb`.
+1. Start with a Linux system that already has [Gnu Guix](https://guix.gnu.org) installed.
+2. Clone [this repo](https://github.com/jonBoone/guix-installer) from GitHub.
+3. Change your working directory to the target directory from step 2 above.
+4. Kick off the build process: `sh build-iso.sh`
+5. Once the ISO is successfully built, you will need to flash it to a USB drive.
 
 ### Flashing the ISO
 
-As stated in _step #2_ at [Instructions](#instructions), you will need to flash
+As stated in _step #5_ of [Build Instructions](#build-instructions), you will need to flash
 the `.iso` file into a USB stick.
 
 **[*]nix**:
@@ -58,11 +56,7 @@ dd status=progress if=guix-installer-202106150234.iso of=/dev/sdb
 
 ## Attributions
 
-- [@anntnzrb](https://github.com/anntnzrb) for providing the starting point for
-  the _CI_ configuration.
-- [@daviwil](https://github.com/daviwil) for releasing the finished _CI_
-  configuration and getting everything up and running.
-- The [System Crafters](https://systemcrafters.cc)' community.
+- The [System Crafters](https://systemcrafters.cc)' community for providing [the starting point](https://github.com/SystemCrafters/guix-installer) for this effort.
 
 ## License
 
